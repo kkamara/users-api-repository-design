@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\API\Auth;
 
 use Illuminate\Http\Request;
+use App\Services\Auth\LogoutUserService;
 
 class LogoutController
 {
+    public function __construct(
+        protected LogoutUserService $logoutUserService,
+    ) {}
+
     public function logout(Request $request) {
-        $request->user()->currentAccessToken()->delete();
-        return ["message" => "Success"];
+        return $this->logoutUserService->logout($request);
     }
 }
