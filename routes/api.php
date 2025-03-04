@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\Auth\LoginController;
 use App\Http\Controllers\API\Auth\LogoutController;
+use App\Http\Controllers\API\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/auth")->group(function () {
@@ -11,4 +12,7 @@ Route::prefix("/auth")->group(function () {
     Route::delete("/", [LogoutController::class, "logout"])
         ->name("logout")
         ->middleware("auth:sanctum");
+    Route::post("/register", [RegisterController::class, "register"])
+        ->name("register")
+        ->middleware("guest");
 });
