@@ -5,12 +5,12 @@ namespace App\Repositories\Auth;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class LoginUserRepository implements LoginUserRepositoryInterface {
-    public function login(Request $request): Response|UserResource {
+    public function login(Request $request): JsonResponse|UserResource {
         $validator = Validator::make($request->all(), [
             "email" => "required|email|max:255",
             "password" => "required|max:30",
