@@ -14,7 +14,7 @@ class LoginController
     public function login(Request $request) {
         $validator = Validator::make($request->all(), [
             "email" => "required|email|max:255",
-            "password" => "required|max:255",
+            "password" => "required|max:30",
         ]);
 
         if ($validator->fails()) {
