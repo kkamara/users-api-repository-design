@@ -14,7 +14,7 @@ class RegisterUserRepository implements RegisterUserRepositoryInterface {
         $validator = Validator::make($request->all(), [
             "name" => "required|min:3|max:30",
             "email" => "required|email|unique:users",
-            "password" => "required|min:7|max:30",
+            "password" => "required|min:6|max:30",
         ]);
 
         if ($validator->fails()) {
