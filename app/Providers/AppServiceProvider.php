@@ -12,6 +12,9 @@ use App\Services\Auth\LoginUserService;
 use App\Repositories\Auth\LogoutUserRepository;
 use App\Repositories\Auth\LogoutUserRepositoryInterface;
 use App\Services\Auth\LogoutUserService;
+use App\Repositories\Auth\RegisterUserRepository;
+use App\Repositories\Auth\RegisterUserRepositoryInterface;
+use App\Services\Auth\RegisterUserService;
 use Illuminate\Contracts\Foundation\Application;
 
 class AppServiceProvider extends ServiceProvider
@@ -46,6 +49,21 @@ class AppServiceProvider extends ServiceProvider
                 return new LogoutUserService(
                     $app->make(
                         LogoutUserRepositoryInterface::class,
+                    ),
+                );
+            },
+        );
+        
+        $this->app->bind(
+            RegisterUserRepositoryInterface::class,
+            RegisterUserRepository::class,
+        );        
+        $this->app->bind(
+            RegisterUserService::class,
+            function (Application $app) {
+                return new RegisterUserService(
+                    $app->make(
+                        RegisterUserRepositoryInterface::class,
                     ),
                 );
             },
