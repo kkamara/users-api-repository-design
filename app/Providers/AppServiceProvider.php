@@ -15,6 +15,9 @@ use App\Services\Auth\LogoutUserService;
 use App\Repositories\Auth\RegisterUserRepository;
 use App\Repositories\Auth\RegisterUserRepositoryInterface;
 use App\Services\Auth\RegisterUserService;
+use App\Repositories\UserRepository;
+use App\Repositories\UserRepositoryInterface;
+use App\Services\UserService;
 use Illuminate\Contracts\Foundation\Application;
 
 class AppServiceProvider extends ServiceProvider
@@ -64,6 +67,21 @@ class AppServiceProvider extends ServiceProvider
                 return new RegisterUserService(
                     $app->make(
                         RegisterUserRepositoryInterface::class,
+                    ),
+                );
+            },
+        );
+        
+        $this->app->bind(
+            UserRepositoryInterface::class,
+            UserRepository::class,
+        );        
+        $this->app->bind(
+            UserService::class,
+            function (Application $app) {
+                return new UserService(
+                    $app->make(
+                        UserRepositoryInterface::class,
                     ),
                 );
             },
