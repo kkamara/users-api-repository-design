@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Resources\UserResource;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController
 {
+    public function __construct(
+        protected UserService $userService,
+    ) {}
+
     public function getUser(Request $request) {
-        return new UserResource($request->user());
+        return $this->userService->getUser($request->user());
     }
 }

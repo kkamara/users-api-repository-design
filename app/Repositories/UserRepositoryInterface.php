@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use App\Http\Resources\UserResource;
-use Illuminate\Http\Request;
+use App\Models\User;
 
 interface UserRepositoryInterface {
-    public function getUser(Request $request): UserResource;
+    public function getUser(User $user): UserResource;
 }

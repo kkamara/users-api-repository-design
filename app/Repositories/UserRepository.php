@@ -2,11 +2,11 @@
 
 namespace App\Repositories;
 
-use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
+use App\Models\User;
 
 class UserRepository implements UserRepositoryInterface {
-    public function getUser(Request $request): UserResource {
-        return new UserResource($request->user());
+    public function getUser(User $user): UserResource {
+        return new UserResource($user);
     }
 }
