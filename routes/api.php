@@ -25,4 +25,7 @@ Route::prefix("/user")->group(function() {
     Route::patch("", [UserController::class, "updateUser"])
         ->name("user.update")
         ->middleware("auth:sanctum");
+    Route::delete("", [UserController::class, "deleteUser"])
+        ->name("user.delete")
+        ->middleware("auth:sanctum");
 });

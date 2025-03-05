@@ -10,4 +10,5 @@ use Illuminate\Http\Request;
 interface UserRepositoryInterface {
     public function getUser(User $user): UserResource;
     public function updateUser(Request $request): JsonResponse|UserResource;
+    public function deleteUser(User $user): JsonResponse;
 }

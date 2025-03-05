@@ -25,7 +25,7 @@ class LoginUserRepository implements LoginUserRepositoryInterface {
 
         $email = filter_var($request->input("email"), FILTER_SANITIZE_EMAIL);
         $password = htmlspecialchars($request->input("password"));
-
+        
         $authentication = Auth::attempt([
             "email" => $email,
             "password" => $password,
@@ -38,6 +38,12 @@ class LoginUserRepository implements LoginUserRepositoryInterface {
         }
 
         $user = User::where("email", $email)->first();
+
+        if (null !== $user->deleted_at) {
+            return response()->json([
+                "message" => __("response.not_found_error"),
+            ], Response::HTTP_NOT_FOUND);
+        }
 
         if (null === $user) {
             return response()->json([
