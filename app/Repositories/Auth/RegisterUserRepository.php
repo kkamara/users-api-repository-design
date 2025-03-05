@@ -33,6 +33,8 @@ class RegisterUserRepository implements RegisterUserRepositoryInterface {
         $user->password = $password;
         $user->save();
 
-        return new UserResource($user);
+        return response()->json([
+            "data" => new UserResource($user),
+        ], Response::HTTP_CREATED);
     }
 }
