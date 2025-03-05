@@ -4,7 +4,7 @@
 
 # Users API Repository Design [![API](https://github.com/kkamara/users-api-repository-design/actions/workflows/build.yml/badge.svg)](https://github.com/kkamara/users-api-repository-design/actions/workflows/build.yml)
 
-(02/03/2025) A Laravel 12.x users API with the Repository Design.
+(02/03/2025) A Laravel 12.x users API with the Repository Design. Includes 
 
 * [Using Postman?](#postman)
 
@@ -14,7 +14,7 @@
 
 * [API Documentation](#api-documentation)
 
-* [Unit Tests](#unit-tests)
+* [Feature Tests](#feature-tests)
 
 * [Misc.](#misc)
 
