@@ -4,6 +4,7 @@ namespace App\Repositories\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\UserResource;
 use App\Models\User;
