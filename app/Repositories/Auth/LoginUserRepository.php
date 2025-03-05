@@ -13,7 +13,7 @@ class LoginUserRepository implements LoginUserRepositoryInterface {
     public function login(Request $request): JsonResponse|UserResource {
         $validator = Validator::make($request->all(), [
             "email" => "required|email|max:255",
-            "password" => "required|max:30",
+            "password" => "required|min:7|max:30",
         ]);
 
         if ($validator->fails()) {
