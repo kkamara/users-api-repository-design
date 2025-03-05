@@ -22,4 +22,7 @@ Route::prefix("/user")->group(function() {
     Route::get("", [UserController::class, "getUser"])
         ->name("user.get")
         ->middleware("auth:sanctum");
+    Route::patch("", [UserController::class, "updateUser"])
+        ->name("user.update")
+        ->middleware("auth:sanctum");
 });

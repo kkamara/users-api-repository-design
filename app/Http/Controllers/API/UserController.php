@@ -15,4 +15,8 @@ class UserController
     public function getUser(Request $request) {
         return $this->userService->getUser($request->user());
     }
+
+    public function updateUser(Request $request) {
+        return $this->userService->updateUser($request);
+    }
 }
