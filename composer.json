@@ -16,7 +16,9 @@
         "api",
         "tests",
         "testing",
-        "laravel"
+        "laravel",
+        "repository-design",
+        "repository-pattern"
     ],
     "license": "BSD-3-Clause",
     "require": {
