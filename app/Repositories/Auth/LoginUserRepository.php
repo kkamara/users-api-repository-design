@@ -33,7 +33,7 @@ class LoginUserRepository implements LoginUserRepositoryInterface {
 
         if (!$authentication) {
             return response()->json([
-                "message" => __("response.login.invalid_credentials"),
+                "message" => __("response.login.invalid_credentials_error"),
             ], Response::HTTP_BAD_REQUEST);
         }
 

@@ -40,7 +40,7 @@ class UserRepository implements UserRepositoryInterface {
                 $emailExists = User::where("email", $email)->exists();
                 if ($emailExists) {
                     return response()->json([
-                        "message" => __("response.user.email_exists"),
+                        "message" => __("response.user.email_exists_error"),
                     ], Response::HTTP_BAD_REQUEST);
                 }
             }

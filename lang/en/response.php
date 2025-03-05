@@ -2,10 +2,10 @@
 
 return [
     "login" => [
-        "invalid_credentials" => "Invalid credentials given.",
+        "invalid_credentials_error" => "Invalid credentials given.",
     ],
     "user" => [
-        "email_exists" => "The given email already exists.",
+        "email_exists_error" => "The given email already exists.",
     ],
     "internal_server_error" => "500 Internal Server Error.",
 ];
