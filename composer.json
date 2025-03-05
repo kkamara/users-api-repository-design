@@ -9,7 +9,7 @@
     ],
     "version": "1.0.0",
     "type": "project",
-    "description": "(02/03/2025) A Laravel 12.x users API with the Repository Design.",
+    "description": "(02/03/2025) A Laravel 12.x users API with the Repository Design. Includes API feature tests.",
     "keywords": [
         "web",
         "web-app",
