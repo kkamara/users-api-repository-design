@@ -32,7 +32,7 @@ class LogoutUserTest extends TestCase
             ->deleteJson('/api/auth');
         $response->assertStatus(Response::HTTP_OK);
         $response->assertJsonFragment([
-            "message" => "Success",
+            "message" => __("response.ok_success"),
         ]);
     }
 }
