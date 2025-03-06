@@ -41,7 +41,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * A feature for unauthorized get user error response.
+     * A feature test for unauthorized get user error response.
      */
     public function test_unauthorized_get_user_error(): void
     {
@@ -50,6 +50,108 @@ class UserTest extends TestCase
         $response->assertUnauthorized();
         $response->assertJsonFragment([
             "message" => "Unauthenticated.",
+        ]);
+    }
+
+    /**
+     * A feature test for successful update user response.
+     */
+    public function test_successful_update_user(): void
+    {
+        $this->seed();
+
+        $userEmail = config("testing.user_email");
+        $user = User::where("email", $userEmail)
+            ->firstOrFail();
+        Sanctum::actingAs($user);
+
+        $newUserName = "Peter Parker";
+
+        $response = $this->withHeaders($this->headers)
+            ->patchJson(
+                "/api/user",
+                [
+                    "name" => $newUserName,
+                ]
+            );
+        $response->assertOk();
+        $response->assertJsonFragment(["name" => $newUserName]);
+        $response->assertJsonStructure([
+            "data" => [
+                "id",
+                "name",
+                "email",
+                "createdAt",
+                "updatedAt",
+            ]
+        ]);
+    }
+
+    /**
+     * A feature test for unauthorized update user error response.
+     */
+    public function test_unauthorized_update_user_error(): void
+    {
+        $response = $this->withHeaders($this->headers)
+            ->patchJson("/api/user");
+        $response->assertUnauthorized();
+        $response->assertJsonFragment([
+            "message" => "Unauthenticated.",
+        ]);
+    }
+
+    /**
+     * A feature test for validation update user error response.
+     */
+    public function test_validation_update_user_error(): void
+    {
+        $this->seed();
+
+        $userEmail = config("testing.user_email");
+        $user = User::where("email", $userEmail)
+            ->firstOrFail();
+        Sanctum::actingAs($user);
+
+        $newUserName = "Pe";
+
+        $response = $this->withHeaders($this->headers)
+            ->patchJson(
+                "/api/user",
+                [
+                    "name" => $newUserName,
+                ]
+            );
+        $response->assertBadRequest();
+        $response->assertJsonFragment([
+            "message" => "The name field must be at least 3 characters.",
+        ]);
+    }
+
+    /**
+     * A feature test for taken_email update user error response.
+     */
+    public function test_taken_email_update_user_error(): void
+    {
+        $this->seed();
+
+        $userEmail = config("testing.user_email");
+        $user = User::where("email", $userEmail)
+            ->firstOrFail();
+        Sanctum::actingAs($user);
+
+        $takenEmail = "takenemail@doe.com";
+        User::factory()->create(["email" => $takenEmail]);
+
+        $response = $this->withHeaders($this->headers)
+            ->patchJson(
+                "/api/user",
+                [
+                    "email" => $takenEmail,
+                ]
+            );
+        $response->assertBadRequest();
+        $response->assertJsonFragment([
+            "message" => __("response.user.email_exists_error"),
         ]);
     }
 }
