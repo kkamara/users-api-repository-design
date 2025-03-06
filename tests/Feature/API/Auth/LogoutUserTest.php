@@ -20,7 +20,7 @@ class LogoutUserTest extends TestCase
     public function test_successful_logout(): void
     {
         $this->seed();
-        
+
         $userEmail = config("testing.user_email");
 
         $user = User::where("email", $userEmail)
@@ -31,5 +31,8 @@ class LogoutUserTest extends TestCase
         $response = $this->withHeaders($this->headers)
             ->deleteJson('/api/auth');
         $response->assertStatus(Response::HTTP_OK);
+        $response->assertJsonFragment([
+            "message" => "Success",
+        ]);
     }
 }
