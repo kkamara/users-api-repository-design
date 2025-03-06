@@ -11,7 +11,6 @@ use Tests\TestCase;
 class LoginUserTest extends TestCase
 {
     use RefreshDatabase;
-    use WithFaker;
 
     protected $headers = ['Content-Type' => 'application/json'];
 
