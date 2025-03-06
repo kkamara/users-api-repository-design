@@ -10,13 +10,17 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected $headers = ['Content-Type' => 'application/json'];
 
     /**
-     * A feature for successful get user response.
+     * A feature test for successful get user response.
      */
     public function test_successful_get_user(): void
     {
+        $this->seed();
+
         $userEmail = config("testing.user_email");
         $user = User::where("email", $userEmail)
             ->firstOrFail();

@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 class RegisterUserTest extends TestCase
 {
+    use RefreshDatabase;
+    
     protected $headers = ['Content-Type' => 'application/json'];
 
     /**
@@ -49,7 +51,7 @@ class RegisterUserTest extends TestCase
     public function test_validation_error(): void
     {
         $this->seed();
-        
+
         $userEmail = "newuser12111@doe.com";
         $userPassword = config("testing.user_password");
 

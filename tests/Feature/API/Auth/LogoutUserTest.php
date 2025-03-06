@@ -11,6 +11,8 @@ use Laravel\Sanctum\Sanctum;
 
 class LogoutUserTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected $headers = ['Content-Type' => 'application/json'];
 
     /**
