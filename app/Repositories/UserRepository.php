@@ -17,7 +17,7 @@ class UserRepository implements UserRepositoryInterface {
     public function updateUser(Request $request): JsonResponse|UserResource {
         $Validator = Validator::make($request->all(), [
             "name" => "sometimes|min:3|max:30",
-            "email" => "sometimes|email",
+            "email" => "sometimes|email|max:255",
             "password" => "sometimes|min:6|max:30",
         ]);
 

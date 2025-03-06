@@ -13,7 +13,7 @@ class RegisterUserRepository implements RegisterUserRepositoryInterface {
     public function register(Request $request): JsonResponse|UserResource {
         $validator = Validator::make($request->all(), [
             "name" => "required|min:3|max:30",
-            "email" => "required|email|unique:users",
+            "email" => "required|email|max:255|unique:users",
             "password" => "required|min:6|max:30",
         ]);
 
