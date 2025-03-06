@@ -57,4 +57,4 @@ jobs:
       - name: Curl to localhost
         run: curl localhost:3000 &
       - name: Run tests
-        run: echo 1
+        run: php artisan test {{ env.PHPUNIT_FLAGS }}

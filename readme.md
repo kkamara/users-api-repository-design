@@ -77,7 +77,7 @@ View the api collection [here](https://documenter.getpostman.com/view/17125932/T
 php artisan test --filter=API
 ```
 
-View the feature test code [here](https://raw.githubusercontent.com/kkamara/users-api-repository-design/main/tests/Feature/Api/UsersTest.php).
+View the feature test code [here](https://raw.githubusercontent.com/kkamara/users-api-repository-design/main/tests/Feature/API).
 
 ## Misc.
 
