@@ -23,8 +23,8 @@ class LoginUserRepository implements LoginUserRepositoryInterface {
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        $email = filter_var($request->input("email"), FILTER_SANITIZE_EMAIL);
-        $password = htmlspecialchars($request->input("password"));
+        $email = filter_var(trim($request->input("email")), FILTER_SANITIZE_EMAIL);
+        $password = htmlspecialchars(trim($request->input("password")));
         
         $authentication = Auth::attempt([
             "email" => $email,

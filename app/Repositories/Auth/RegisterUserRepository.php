@@ -23,9 +23,9 @@ class RegisterUserRepository implements RegisterUserRepositoryInterface {
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        $name = htmlspecialchars($request->input("name"));
-        $email = filter_var($request->input("email"), FILTER_SANITIZE_EMAIL);
-        $password = htmlspecialchars($request->input("password"));
+        $name = htmlspecialchars(trim($request->input("name")));
+        $email = filter_var(trim($request->input("email")), FILTER_SANITIZE_EMAIL);
+        $password = htmlspecialchars(trim($request->input("password")));
 
         $user = new User();
         $user->name = $name;

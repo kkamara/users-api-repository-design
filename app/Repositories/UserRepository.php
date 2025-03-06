@@ -30,12 +30,12 @@ class UserRepository implements UserRepositoryInterface {
         $user = $request->user();
 
         if (null !== $request->input("name")) {
-            $name = htmlspecialchars($request->input("name"));
+            $name = htmlspecialchars(trim($request->input("name")));
             $user->name = $name;
         }
         // Check if different email given is unique.
         if (null !== $request->input("email")) {
-            $email = filter_var($request->input("email"), FILTER_SANITIZE_EMAIL);
+            $email = filter_var(trim($request->input("email")), FILTER_SANITIZE_EMAIL);
             if ($user->email !== $email) {
                 $emailExists = User::where("email", $email)->exists();
                 if ($emailExists) {
@@ -50,7 +50,7 @@ class UserRepository implements UserRepositoryInterface {
             $user->email = $email;
         }
         if (null !== $request->input("password")) {
-            $password = htmlspecialchars($request->input("password"));
+            $password = htmlspecialchars(trim($request->input("password")));
             $user->password = $password;
         }
 
