@@ -15,6 +15,8 @@ class RegisterUserTest extends TestCase
      */
     public function test_successful_register(): void
     {
+        $this->seed();
+
         $userName = "New User";
         $userEmail = "newuser12111@doe.com";
         $userPassword = config("testing.user_password");
@@ -46,6 +48,8 @@ class RegisterUserTest extends TestCase
      */
     public function test_validation_error(): void
     {
+        $this->seed();
+        
         $userEmail = "newuser12111@doe.com";
         $userPassword = config("testing.user_password");
 

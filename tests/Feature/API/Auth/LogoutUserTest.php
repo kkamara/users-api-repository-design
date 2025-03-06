@@ -3,7 +3,6 @@
 namespace Tests\Feature\API\Auth;
 
 use App\Models\User;
-use Exception;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Response;
