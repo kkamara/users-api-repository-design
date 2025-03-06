@@ -39,12 +39,6 @@ class LoginUserRepository implements LoginUserRepositoryInterface {
 
         $user = User::where("email", $email)->first();
 
-        if (null !== $user->deleted_at) {
-            return response()->json([
-                "message" => __("response.not_found_error"),
-            ], Response::HTTP_NOT_FOUND);
-        }
-
         if (null === $user) {
             return response()->json([
                 "message" => __("response.internal_server_error"),

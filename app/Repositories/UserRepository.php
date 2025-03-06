@@ -11,20 +11,10 @@ use Illuminate\Support\Facades\Validator;
 
 class UserRepository implements UserRepositoryInterface {
     public function getUser(User $user): UserResource {
-        if (null !== $user->deleted_at) {
-            return response()->json([
-                "message" => __("response.not_found_error"),
-            ], Response::HTTP_NOT_FOUND);
-        }
         return new UserResource($user);
     }
 
     public function updateUser(Request $request): JsonResponse|UserResource {
-        if (null !== $request->user()->deleted_at) {
-            return response()->json([
-                "message" => __("response.not_found_error"),
-            ], Response::HTTP_NOT_FOUND);
-        }
         $Validator = Validator::make($request->all(), [
             "name" => "sometimes|min:3|max:30",
             "email" => "sometimes|email",
@@ -69,11 +59,6 @@ class UserRepository implements UserRepositoryInterface {
     }
 
     public function deleteUser(User $user): JsonResponse {
-        if (null !== $user->deleted_at) {
-            return response()->json([
-                "message" => __("response.not_found_error"),
-            ], Response::HTTP_NOT_FOUND);
-        }
         $user->delete();
         return response()->json([
             "message" => __("response.user.delete_user_success"),
