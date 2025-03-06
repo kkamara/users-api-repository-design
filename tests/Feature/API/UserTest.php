@@ -160,4 +160,39 @@ class UserTest extends TestCase
             ),
         ]);
     }
+
+    /**
+     * A feature test for successful delete user response.
+     */
+    public function test_successful_delete_user(): void
+    {
+        $this->seed();
+
+        $userEmail = config("testing.user_email");
+        $user = User::where("email", $userEmail)
+            ->firstOrFail();
+        Sanctum::actingAs($user);
+
+        $response = $this->withHeaders($this->headers)
+            ->deleteJson("/api/user");
+        $response->assertOk();
+        $response->assertJsonFragment([
+            "message" => __("response.user.delete_user_success"),
+        ]);
+
+        $this->assertNotEquals($user->deleted_at, null);
+    }
+
+    /**
+     * A feature test for unauthorized delete user error response.
+     */
+    public function test_unauthorized_delete_user_error(): void
+    {
+        $response = $this->withHeaders($this->headers)
+            ->deleteJson("/api/user");
+        $response->assertUnauthorized();
+        $response->assertJsonFragment([
+            "message" => "Unauthenticated.",
+        ]);
+    }
 }
