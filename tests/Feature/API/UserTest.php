@@ -154,7 +154,10 @@ class UserTest extends TestCase
             );
         $response->assertBadRequest();
         $response->assertJsonFragment([
-            "message" => __("response.user.email_exists_error"),
+            "message" => __(
+                "validation.exists",
+                ["attribute" => "email"],
+            ),
         ]);
     }
 }
