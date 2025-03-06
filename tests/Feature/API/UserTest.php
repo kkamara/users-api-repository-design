@@ -123,7 +123,10 @@ class UserTest extends TestCase
             );
         $response->assertBadRequest();
         $response->assertJsonFragment([
-            "message" => "The name field must be at least 3 characters.",
+            "message" => __(
+                "validation.min.string",
+                ["attribute" => "name", "min" => 3],
+            ),
         ]);
     }
 

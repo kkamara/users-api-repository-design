@@ -9,7 +9,7 @@ use Tests\TestCase;
 class RegisterUserTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     protected $headers = ['Content-Type' => 'application/json'];
 
     /**
@@ -65,7 +65,10 @@ class RegisterUserTest extends TestCase
             );
         $response->assertBadRequest();
         $response->assertJsonFragment([
-            "message" => "The name field is required.",
+            "message" => __(
+                "validation.required",
+                ["attribute" => "name"],
+            ),
         ]);
     }
 }

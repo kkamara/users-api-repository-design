@@ -64,7 +64,10 @@ class LoginUserTest extends TestCase
             );
         $response->assertStatus(Response::HTTP_BAD_REQUEST);
         $response->assertJsonFragment([
-            "message" => "The password field is required.",
+            "message" => __(
+                "validation.required",
+                ["attribute" => "password"],
+            ),
         ]);
     }
 
