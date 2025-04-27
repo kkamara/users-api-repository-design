@@ -25,9 +25,11 @@
 <a name="postman"></a>
 ## Using Postman?
 
-[Postman client](https://www.postman.com/).
+[Get Postman HTTP client](https://www.postman.com).
 
-[Published Postman API Collection](https://documenter.getpostman.com/view/17125932/TzzAKvVe).
+[Postman API Collection for Users API Repository Design](https://github.com/kkamara/users-api-repository-design/blob/main/database/users-api-repository-design.postman_collection.json).
+
+[Postman API Environment for Users API Repository Design](https://github.com/kkamara/users-api-repository-design/blob/main/database/users-api-repository-design.postman_environment.json).
 
 ## Installation
 
